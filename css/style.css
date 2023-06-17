@@ -1,0 +1,10 @@
+/* variáveis do css */
+:root {
+    --body-bg-image: url('../img/background-stratosphere.gif');
+}
+
+body {
+    background: var(--body-bg-image) no-repeat center fixed;
+    background-size: contain;
+    background-size: 100% 100%;
+}
