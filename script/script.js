@@ -3,23 +3,37 @@ const qs = (val) => {
     return document.querySelector(val)
 }
 
+/* declaração de variáveis */
 let score = 0;
-let click = 0;
+let cps = 0;
 
-function updateScore(click) {
-    score += click;
-    qs("#score").innerHTML = score;
-    qs("title").innerHTML = score + " sonhos | yumeclick"
-}
-
-function storageScore() {
-    const sonhos = localStorage.getItem("score") || 0;
-    const efeitos = JSON.parse(localStorage.getItem("efeitos")) || [];
-
-    const storage = {
-        "sonhos": sonhos,
-        "efeitos": efeitos
+/* eventos */
+qs("#buy-frog").addEventListener("click", function() {
+    if (score >= 5) {
+        score -= 5;
+        cps += 1;
+        qs("#score").innerHTML = score;
+        qs("title").innerHTML = score + " sonhos | yumeclick";
     }
+    else {
+        
+    }
+});
 
-    return storage;
+/* funções */
+function updateScore(i) {
+    score += i;
+    qs("#score").innerHTML = score;
+    qs("title").innerHTML = score + " sonhos | yumeclick";
 }
+
+function autoClicker() {
+    score += cps;
+}
+
+/* loop */
+window.setInterval(function() {
+    autoClicker();
+    qs("#score").innerHTML = score;
+    qs("title").innerHTML = score + " sonhos | yumeclick";
+}, 1000);
