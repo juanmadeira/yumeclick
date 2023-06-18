@@ -1,6 +1,7 @@
 /* variáveis do css */
 :root {
-    --body-bg-image: url('../img/background-sky-garden.png');
+    --body-bg-image: url("../img/background-sky-garden.png");
+    --effects-menu-bg-image: url("../img/menu-border.png");
 }
 
 * {
@@ -44,6 +45,10 @@ body {
     color: #fff;
 }
 
+.cps-value {
+    font-size: 1rem;
+}
+
 .madotsuki-container {
     height: 320px;
 }
@@ -51,4 +56,14 @@ body {
 #madotsuki {
     width: 256px;
     cursor: pointer;
+}
+
+.efeitos {
+    background: var(--effects-menu-bg-image);
+    background-size: contain;
+    background-size: 100% 100%;
+}
+
+.efeito {
+    padding: 20px 20px;
 }
