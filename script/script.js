@@ -9,7 +9,6 @@ let score = 0;
 let cps = 0;
 
 /* sons */
-
 const buySound = new Audio("./sound/buy-sound.wav");
 const errorSound = new Audio("./sound/error-sound.wav");
 buySound.volume = 0.2;
