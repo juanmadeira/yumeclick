@@ -14,21 +14,28 @@
             <div class="configs">
                 <img src="./img/audio-on.svg" alt="audio on" class="config audioconfig" onclick="muteSounds()">
             </div>
-            <div class="container">
+            <div class="wrapper">
                 <div class="score-container">
-                    <span class="score-value"><span id="score">0</span> sonhos<br></span>
-                    <span class="cps-value"><span id="cps">0</span> 💤/s</span>
+                    <p class="score-value"><span id="score">0</span> sonhos<br></p>
+                    <p class="cps-value"><span id="cps">0</span> 💤/s</p>
                 </div>
                 <div class="madotsuki-container">
                     <img src="./img/madotsuki.webp" alt="madotsuki" id="madotsuki" onclick="updateScore(1)">
                 </div>
                 <div class="efeitos">
                     <div class="efeito">
-                        <img src="./img/egg-frog.webp" alt="frog egg">
-                        <p>Frog</p>
-                        <p>+1 💤/s</p>
-                        <p>5 sonhos</p>
+                        <img src="./img/egg-frog.webp" alt="frog egg" id="frog-egg" onclick="useEffect()">
+                        <p class="efeito-titulo" id="frog-title" style="color: rgb(255, 255, 255);">Frog</p>
+                        <p class="efeito-bonus">+1 💤/s</p>
+                        <p class="efeito-preco">5 sonhos</p>
                         <button id="buy-frog">Comprar</button>
+                    </div>
+                    <div class="efeito">
+                        <img src="./img/egg-umbrella.webp" alt="umbrella egg" id="frog-egg">
+                        <p class="efeito-titulo" id="umbrella-title" style="color: rgb(255, 255, 255);">Umbrella</p>
+                        <p class="efeito-bonus">+10 💤/s</p>
+                        <p class="efeito-preco">150 sonhos</p>
+                        <button id="buy-umbrella">Comprar</button>
                     </div>
                 </div>
             </div>
