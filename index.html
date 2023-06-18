@@ -10,19 +10,24 @@
         <title>yumeclick</title>
     </head>
     <body>
-        <main class="container">
-            <div class="score-container">
-                <span id="score">0</span> sonhos
+        <main>
+            <div class="configs">
+                <img src="./img/audio-on.svg" alt="audio on" class="config audioconfig" onclick="muteSounds()">
             </div>
-            <div class="madotsuki-container">
-                <img src="./img/madotsuki.webp" alt="madotsuki" id="madotsuki" onclick="updateScore(1)">
-            </div>
-            <div class="efeitos">
-                <div class="efeito">
-                    <img src="./img/egg-frog.webp" alt="frog egg">
-                    <p>Frog</p>
-                    <p>5 sonhos</p>
-                    <button id="buy-frog">Comprar</button>
+            <div class="container">
+                <div class="score-container">
+                    <span id="score">0</span> sonhos
+                </div>
+                <div class="madotsuki-container">
+                    <img src="./img/madotsuki.webp" alt="madotsuki" id="madotsuki" onclick="updateScore(1)">
+                </div>
+                <div class="efeitos">
+                    <div class="efeito">
+                        <img src="./img/egg-frog.webp" alt="frog egg">
+                        <p>Frog</p>
+                        <p>5 sonhos</p>
+                        <button id="buy-frog">Comprar</button>
+                    </div>
                 </div>
             </div>
         </main>
