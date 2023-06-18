@@ -9,6 +9,7 @@
     font-family: "VT-100", fixedsys, System, monospace;
     overflow: hidden;
     user-select: none;
+    color: white;
 }
 
 body {
