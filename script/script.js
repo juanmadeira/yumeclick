@@ -8,19 +8,42 @@ let mute = 0;
 let score = 0;
 let cps = 0;
 
+let boughtFrog = 0;
+let boughtUmbrella = 0;
+
 /* sons */
-const clickSound = new Audio("./sound/click-sound.wav");
-const buySound = new Audio("./sound/buy-sound.wav");
-const errorSound = new Audio("./sound/error-sound.wav");
+const clickSound = new Audio("./sound/click.wav");
+const buySound = new Audio("./sound/buy.wav");
+const errorSound = new Audio("./sound/error.wav");
+const effectSound = new Audio("./sound/use-effect.wav");
 clickSound.volume = 0.2;
 buySound.volume = 0.2;
 errorSound.volume = 0.2;
+effectSound.volume = 0.2;
 
 /* eventos */
+// frog effect
 qs("#buy-frog").addEventListener("click", function() {
     if (score >= 5) {
         score -= 5;
+        boughtFrog += 1;
         cps += 1;
+        buySound.play();
+        qs("#score").innerHTML = score;
+        qs("title").innerHTML = score + " sonhos | yumeclick";
+        qs("#cps").innerHTML = cps;
+    }
+    else {
+        errorSound.play();
+    }
+});
+
+// umbrella effect
+qs("#buy-umbrella").addEventListener("click", function() {
+    if (score >= 150) {
+        score -= 150;
+        boughtUmbrella += 1;
+        cps += 10;
         buySound.play();
         qs("#score").innerHTML = score;
         qs("title").innerHTML = score + " sonhos | yumeclick";
@@ -39,6 +62,7 @@ function muteSounds() {
         clickSound.volume = 0;
         buySound.volume = 0;
         errorSound.volume = 0;
+        effectSound.volume = 0;
     }
     else {
         qs(".audioconfig").src = "./img/audio-on.svg";
@@ -57,6 +81,21 @@ function updateScore(i) {
 
 function autoClicker() {
     score += cps;
+}
+
+function useEffect() {
+    if (boughtFrog >= 1) {
+        if (qs("#frog-title").style.color == "rgb(255, 255, 255)"){
+            effectSound.play();
+            qs("#frog-title").style.color = "rgb(173, 255, 47)";
+            qs("#madotsuki").src = "./img/madotsuki-frog.webp";
+        }
+        else {
+            effectSound.play();
+            qs("#frog-title").style.color = "rgb(255, 255, 255)"
+            qs("#madotsuki").src = "./img/madotsuki.webp";
+        }
+    }
 }
 
 /* loop */
