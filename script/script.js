@@ -4,10 +4,12 @@ const qs = (val) => {
 }
 
 /* declaração de variáveis */
+let mute = 0;
 let score = 0;
 let cps = 0;
 
 /* sons */
+
 const buySound = new Audio("./sound/buy-sound.wav");
 const errorSound = new Audio("./sound/error-sound.wav");
 buySound.volume = 0.2;
@@ -28,6 +30,21 @@ qs("#buy-frog").addEventListener("click", function() {
 });
 
 /* funções */
+function muteSounds() {
+    if (mute == 0) {
+        qs(".audioconfig").src = "./img/audio-off.svg";
+        mute = 1;
+        buySound.volume = 0;
+        errorSound.volume = 0;
+    }
+    else {
+        qs(".audioconfig").src = "./img/audio-on.svg";
+        mute = 0;
+        buySound.volume = 0.2;
+        errorSound.volume = 0.2;
+    }
+}
+
 function updateScore(i) {
     score += i;
     qs("#score").innerHTML = score;
