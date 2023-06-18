@@ -13,6 +13,7 @@ let boughtUmbrella = 0;
 
 /* sons */
 const clickSound = new Audio("./sound/click.wav");
+const desmuteSound = new Audio("./sound/desmute.wav");
 const buySound = new Audio("./sound/buy.wav");
 const errorSound = new Audio("./sound/error.wav");
 const effectSound = new Audio("./sound/use-effect.wav");
@@ -20,6 +21,7 @@ clickSound.volume = 0.2;
 buySound.volume = 0.2;
 errorSound.volume = 0.2;
 effectSound.volume = 0.2;
+desmuteSound.volume = 0.2;
 
 /* eventos */
 // frog effect
@@ -63,12 +65,17 @@ function muteSounds() {
         buySound.volume = 0;
         errorSound.volume = 0;
         effectSound.volume = 0;
+        desmuteSound.volume = 0;
     }
     else {
         qs(".audioconfig").src = "./img/audio-on.svg";
         mute = 0;
+        desmuteSound.play();
+        clickSound.volume = 0.2;
         buySound.volume = 0.2;
         errorSound.volume = 0.2;
+        effectSound.volume = 0.2;
+        desmuteSound.volume = 0.2;
     }
 }
 
@@ -83,17 +90,34 @@ function autoClicker() {
     score += cps;
 }
 
-function useEffect() {
-    if (boughtFrog >= 1) {
-        if (qs("#frog-title").style.color == "rgb(255, 255, 255)"){
-            effectSound.play();
-            qs("#frog-title").style.color = "rgb(173, 255, 47)";
-            qs("#madotsuki").src = "./img/madotsuki-frog.webp";
+function useEffect(effect) {
+    qs(".efeito-titulo").style.color = "rgb(255, 255, 255)";
+    if (effect == "frog") {
+        if (boughtFrog >= 1) {
+            if (qs("#frog-title").style.color == "rgb(255, 255, 255)"){
+                effectSound.play();
+                qs("#frog-title").style.color = "rgb(173, 255, 47)";
+                qs("#madotsuki").src = "./img/madotsuki-frog.webp";
+            }
+            else {
+                effectSound.play();
+                qs("#frog-title").style.color = "rgb(255, 255, 255)"
+                qs("#madotsuki").src = "./img/madotsuki.webp";
+            }
         }
-        else {
-            effectSound.play();
-            qs("#frog-title").style.color = "rgb(255, 255, 255)"
-            qs("#madotsuki").src = "./img/madotsuki.webp";
+    }   //qs(".efeito-titulo").style.color = "rgb(255, 255, 255)";
+    else if (effect == "umbrella") {
+        if (boughtUmbrella >= 1) {
+            if (qs("#umbrella-title").style.color == "rgb(255, 255, 255)"){
+                effectSound.play();
+                qs("#umbrella-title").style.color = "rgb(173, 255, 47)";
+                qs("#madotsuki").src = "./img/madotsuki-umbrella.webp";
+            }
+            else {
+                effectSound.play();
+                qs("#umbrella-title").style.color = "rgb(255, 255, 255)"
+                qs("#madotsuki").src = "./img/madotsuki.webp";
+            }
         }
     }
 }
