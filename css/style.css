@@ -8,7 +8,6 @@
     margin: 0;
     padding: 0;
     font-family: "VT-100", fixedsys, System, monospace;
-    overflow: hidden;
     user-select: none;
     color: white;
 }
@@ -28,12 +27,11 @@ body {
     width: 32px;
 }
 
-.container {
+.wrapper {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    padding: 20px 0;
 }
 
 .score-container {
@@ -62,8 +60,26 @@ body {
     background: var(--effects-menu-bg-image);
     background-size: contain;
     background-size: 100% 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 
 .efeito {
     padding: 20px 20px;
+}
+
+.efeito button {
+    background-color: #5c043482; 
+    border: none;
+    color: white;
+    padding: 2px 4px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
 }
