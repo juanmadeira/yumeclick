@@ -43,4 +43,4 @@ window.setInterval(function() {
     autoClicker();
     qs("#score").innerHTML = score;
     qs("title").innerHTML = score + " sonhos | yumeclick";
-}, 1000);
+}, 1000); // atualiza o jogo a cada 1s
