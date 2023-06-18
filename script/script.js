@@ -9,8 +9,10 @@ let score = 0;
 let cps = 0;
 
 /* sons */
+const clickSound = new Audio("./sound/click-sound.wav");
 const buySound = new Audio("./sound/buy-sound.wav");
 const errorSound = new Audio("./sound/error-sound.wav");
+clickSound.volume = 0.2;
 buySound.volume = 0.2;
 errorSound.volume = 0.2;
 
@@ -22,6 +24,7 @@ qs("#buy-frog").addEventListener("click", function() {
         buySound.play();
         qs("#score").innerHTML = score;
         qs("title").innerHTML = score + " sonhos | yumeclick";
+        qs("#cps").innerHTML = cps;
     }
     else {
         errorSound.play();
@@ -33,6 +36,7 @@ function muteSounds() {
     if (mute == 0) {
         qs(".audioconfig").src = "./img/audio-off.svg";
         mute = 1;
+        clickSound.volume = 0;
         buySound.volume = 0;
         errorSound.volume = 0;
     }
@@ -46,6 +50,7 @@ function muteSounds() {
 
 function updateScore(i) {
     score += i;
+    clickSound.play();
     qs("#score").innerHTML = score;
     qs("title").innerHTML = score + " sonhos | yumeclick";
 }
@@ -59,4 +64,5 @@ window.setInterval(function() {
     autoClicker();
     qs("#score").innerHTML = score;
     qs("title").innerHTML = score + " sonhos | yumeclick";
+    qs("#cps").innerHTML = cps;
 }, 1000); // atualiza o jogo a cada 1s
