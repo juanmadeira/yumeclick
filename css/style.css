@@ -70,6 +70,10 @@ body {
     padding: 20px 20px;
 }
 
+.efeito img {
+    cursor: pointer;
+}
+
 .efeito button {
     background-color: #5c043482; 
     border: none;
