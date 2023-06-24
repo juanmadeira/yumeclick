@@ -26,7 +26,13 @@ errorSound.volume = 0.2;
 effectSound.volume = 0.2;
 desmuteSound.volume = 0.2;
 
-/* eventos */
+/* esconder efeitos */
+let efeitos = ["frog", "umbrella"];
+for (let i = 0; i < efeitos.length; i++) {
+    qs(`.efeito-${efeitos[i]}`).style.display = "none";
+}
+
+/* comprar efeitos */
 // frog effect
 qs("#buy-frog").addEventListener("click", function() {
     if (score >= costFrog) {
@@ -39,6 +45,12 @@ qs("#buy-frog").addEventListener("click", function() {
         qs("#cps").innerHTML = cps;
         qs("#frog-cost").innerHTML = costFrog;
         qs("title").innerHTML = score + " sonhos | yumeclick";
+
+        // ativar efeito automaticamente na primeira compra
+        if (boughtFrog === 1) {
+            useEffect('frog');
+            qs(".efeito-umbrella").style.display = "";
+        }
     }
     else {
         errorSound.play();
@@ -57,6 +69,11 @@ qs("#buy-umbrella").addEventListener("click", function() {
         qs("#cps").innerHTML = cps;
         qs("#umbrella-cost").innerHTML = costUmbrella;
         qs("title").innerHTML = score + " sonhos | yumeclick";
+
+        // ativar efeito automaticamente na primeira compra e exibir o próximo
+        if (boughtUmbrella === 1) {
+            useEffect('umbrella');
+        }
     }
     else {
         errorSound.play();
@@ -91,6 +108,10 @@ function updateScore(i) {
     clickSound.play();
     qs("#score").innerHTML = score;
     qs("title").innerHTML = score + " sonhos | yumeclick";
+
+    if (score >= 5) {
+        qs(".efeito-frog").style.display = "";
+    }
 }
 
 function autoClicker() {
@@ -140,7 +161,7 @@ function useEffect(effect) {
     }
 }
 
-/* loop */
+/* loops */
 window.setInterval(function() {
     autoClicker();
     qs("#score").innerHTML = score;
