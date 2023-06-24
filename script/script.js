@@ -109,7 +109,7 @@ function updateScore(i) {
     qs("#score").innerHTML = score;
     qs("title").innerHTML = score + " sonhos | yumeclick";
 
-    if (score >= 5) {
+    if (score >= costFrog) {
         qs(".efeito-frog").style.display = "";
     }
 }
