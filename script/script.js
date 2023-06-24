@@ -116,7 +116,7 @@ function useEffect(effect) {
         if (qs(`#${effect}-title`).style.color == "rgb(255, 255, 255)") {
             effectSound.play();
             let efeitoTitulo = document.querySelectorAll(".efeito-titulo");
-            for(let i = 0; i < efeitoTitulo.length; i++) {
+            for (let i = 0; i < efeitoTitulo.length; i++) {
                 efeitoTitulo[i].style.color = "rgb(255, 255, 255)";
             }
             qs(`#${effect}-title`).style.color = "rgb(173, 255, 47)";
@@ -125,11 +125,12 @@ function useEffect(effect) {
     }
 
     function disableEffect() {
-        qs("#madotsuki").src = "./img/madotsuki.webp";
+        effectSound.play();
         let efeitoTitulo = document.querySelectorAll(".efeito-titulo");
-        for(let i = 0; i < efeitoTitulo.length; i++) {
+        for (let i = 0; i < efeitoTitulo.length; i++) {
             efeitoTitulo[i].style.color = "rgb(255, 255, 255)";
         }
+        qs("#madotsuki").src = "./img/madotsuki.webp";
     }
 }
 
