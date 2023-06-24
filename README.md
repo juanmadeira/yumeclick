@@ -7,5 +7,5 @@
 Clicker baseado em Yume Nikki, jogo japonês de surrealismo e terror, criado por KIKIYAMA. Todos os créditos de sprites, efeitos sonoros, backgrounds e itens ao desenvolvedor do jogo original.
 
 <div align="center">
-    ![Yume Nikki](https://upload.wikimedia.org/wikipedia/pt/b/bf/Yume_Nikki.jpg)(https://en.wikipedia.org/wiki/Yume_Nikki)
+    ![Yume_Nikki](https://github.com/juanmadeira/yumeclick/assets/21133654/94b5cd29-ceab-4eae-bbf1-4a66917e1f6f)
 </div>
