@@ -125,7 +125,6 @@ function useEffect(effect) {
     }
 
     function disableEffect() {
-        effectSound.play();
         let efeitoTitulo = document.querySelectorAll(".efeito-titulo");
         for (let i = 0; i < efeitoTitulo.length; i++) {
             efeitoTitulo[i].style.color = "rgb(255, 255, 255)";
