@@ -8,6 +8,9 @@ let mute = 0;
 let score = 0;
 let cps = 0;
 
+let costFrog = 10;
+let costUmbrella = 150;
+
 let boughtFrog = 0;
 let boughtUmbrella = 0;
 
@@ -26,14 +29,16 @@ desmuteSound.volume = 0.2;
 /* eventos */
 // frog effect
 qs("#buy-frog").addEventListener("click", function() {
-    if (score >= 5) {
-        score -= 5;
-        boughtFrog += 1;
-        cps += 1;
+    if (score >= costFrog) {
         buySound.play();
+        score -= costFrog;
+        cps += 1;
+        boughtFrog += 1;
+        costFrog = Math.ceil(costFrog * 1.25);
         qs("#score").innerHTML = score;
-        qs("title").innerHTML = score + " sonhos | yumeclick";
         qs("#cps").innerHTML = cps;
+        qs("#frog-cost").innerHTML = costFrog;
+        qs("title").innerHTML = score + " sonhos | yumeclick";
     }
     else {
         errorSound.play();
@@ -42,14 +47,16 @@ qs("#buy-frog").addEventListener("click", function() {
 
 // umbrella effect
 qs("#buy-umbrella").addEventListener("click", function() {
-    if (score >= 150) {
-        score -= 150;
-        boughtUmbrella += 1;
-        cps += 10;
+    if (score >= costUmbrella) {
         buySound.play();
+        score -= costUmbrella;
+        cps += 10;
+        boughtUmbrella += 1;
+        costUmbrella = Math.ceil(costUmbrella * 1.5);
         qs("#score").innerHTML = score;
-        qs("title").innerHTML = score + " sonhos | yumeclick";
         qs("#cps").innerHTML = cps;
+        qs("#umbrella-cost").innerHTML = costUmbrella;
+        qs("title").innerHTML = score + " sonhos | yumeclick";
     }
     else {
         errorSound.play();
