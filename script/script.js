@@ -91,33 +91,44 @@ function autoClicker() {
 }
 
 function useEffect(effect) {
-    qs(".efeito-titulo").style.color = "rgb(255, 255, 255)";
-    if (effect == "frog") {
+    if (effect === "frog") {
         if (boughtFrog >= 1) {
-            if (qs("#frog-title").style.color == "rgb(255, 255, 255)"){
-                effectSound.play();
-                qs("#frog-title").style.color = "rgb(173, 255, 47)";
-                qs("#madotsuki").src = "./img/madotsuki-frog.webp";
+            if (qs("#frog-title").style.color == "rgb(255, 255, 255)") {
+                enableEffect();
             }
             else {
-                effectSound.play();
-                qs("#frog-title").style.color = "rgb(255, 255, 255)"
-                qs("#madotsuki").src = "./img/madotsuki.webp";
+                disableEffect();
             }
         }
-    }   //qs(".efeito-titulo").style.color = "rgb(255, 255, 255)";
-    else if (effect == "umbrella") {
+    }
+    else if (effect === "umbrella") {
         if (boughtUmbrella >= 1) {
-            if (qs("#umbrella-title").style.color == "rgb(255, 255, 255)"){
-                effectSound.play();
-                qs("#umbrella-title").style.color = "rgb(173, 255, 47)";
-                qs("#madotsuki").src = "./img/madotsuki-umbrella.webp";
+            if (qs("#umbrella-title").style.color == "rgb(255, 255, 255)") {
+                enableEffect();
             }
             else {
-                effectSound.play();
-                qs("#umbrella-title").style.color = "rgb(255, 255, 255)"
-                qs("#madotsuki").src = "./img/madotsuki.webp";
+                disableEffect();
             }
+        }
+    }
+
+    function enableEffect() {
+        if (qs(`#${effect}-title`).style.color == "rgb(255, 255, 255)") {
+            effectSound.play();
+            let efeitoTitulo = document.querySelectorAll(".efeito-titulo");
+            for(let i = 0; i < efeitoTitulo.length; i++) {
+                efeitoTitulo[i].style.color = "rgb(255, 255, 255)";
+            }
+            qs(`#${effect}-title`).style.color = "rgb(173, 255, 47)";
+            qs("#madotsuki").src = `./img/madotsuki-${effect}.webp`;
+        }
+    }
+
+    function disableEffect() {
+        qs("#madotsuki").src = "./img/madotsuki.webp";
+        let efeitoTitulo = document.querySelectorAll(".efeito-titulo");
+        for(let i = 0; i < efeitoTitulo.length; i++) {
+            efeitoTitulo[i].style.color = "rgb(255, 255, 255)";
         }
     }
 }
