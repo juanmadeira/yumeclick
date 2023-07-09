@@ -3,17 +3,6 @@ const qs = (val) => {
     return document.querySelector(val)
 }
 
-/* declaração de variáveis */
-let mute = 0;
-let score = 0;
-let cps = 0;
-
-let costFrog = 10;
-let costUmbrella = 150;
-
-let boughtFrog = 0;
-let boughtUmbrella = 0;
-
 /* sons */
 const clickSound = new Audio("./sound/click.wav");
 const desmuteSound = new Audio("./sound/desmute.wav");
@@ -26,61 +15,57 @@ errorSound.volume = 0.2;
 effectSound.volume = 0.2;
 desmuteSound.volume = 0.2;
 
-/* esconder efeitos */
+/* declaração de variáveis */
+let mute = 0;
+let score = 0;
+let cps = 0;
+let toBuy = 0;
+
 let efeitos = ["frog", "umbrella"];
+let cost = [10, 150];
+let bought = [0, 0];
+
+// esconder efeitos
 for (let i = 0; i < efeitos.length; i++) {
     qs(`.efeito-${efeitos[i]}`).style.display = "none";
 }
 
-/* comprar efeitos */
-// frog effect
-qs("#buy-frog").addEventListener("click", function() {
-    if (score >= costFrog) {
-        buySound.play();
-        score -= costFrog;
-        cps += 1;
-        boughtFrog += 1;
-        costFrog = Math.ceil(costFrog * 1.25);
-        qs("#score").innerHTML = score;
-        qs("#cps").innerHTML = cps;
-        qs("#frog-cost").innerHTML = costFrog;
-        qs("title").innerHTML = score + " sonhos | yumeclick";
-
-        // ativar efeito automaticamente na primeira compra
-        if (boughtFrog === 1) {
-            useEffect('frog');
-            qs(".efeito-umbrella").style.display = "";
-        }
-    }
-    else {
-        errorSound.play();
-    }
-});
-
-// umbrella effect
-qs("#buy-umbrella").addEventListener("click", function() {
-    if (score >= costUmbrella) {
-        buySound.play();
-        score -= costUmbrella;
-        cps += 10;
-        boughtUmbrella += 1;
-        costUmbrella = Math.ceil(costUmbrella * 1.5);
-        qs("#score").innerHTML = score;
-        qs("#cps").innerHTML = cps;
-        qs("#umbrella-cost").innerHTML = costUmbrella;
-        qs("title").innerHTML = score + " sonhos | yumeclick";
-
-        // ativar efeito automaticamente na primeira compra e exibir o próximo
-        if (boughtUmbrella === 1) {
-            useEffect('umbrella');
-        }
-    }
-    else {
-        errorSound.play();
-    }
-});
-
 /* funções */
+// comprar efeitos
+function buyEffect(effect) {
+    switch (effect) {
+        case 'frog':
+            toBuy = 0;
+            break;
+        case 'umbrella':
+            toBuy = 1;
+            break;
+        default:
+            break;
+    }
+    if (score >= cost[toBuy]) {
+        buySound.play();
+        score -= cost[toBuy];
+        cps += 1;
+        bought[toBuy] += 1;
+        cost[toBuy] = Math.ceil(cost[0] * 1.25);
+        qs(`#${efeitos[toBuy]}-cost`).innerHTML = cost[toBuy];
+        qs("#cps").innerHTML = cps;
+        qs("#score").innerHTML = score;
+        qs("title").innerHTML = score + " sonhos | yumeclick";
+        if (bought[toBuy] === 1) {
+            useEffect(`${efeitos[toBuy]}`);
+            if (qs(`.efeito-${efeitos[toBuy + 1]}`)) {
+                qs(`.efeito-${efeitos[toBuy + 1]}`).style.display = "";
+            }
+        }
+    }
+    else {
+        errorSound.play();
+    }
+}
+
+// desligar sons
 function muteSounds() {
     if (mute == 0) {
         qs(".audioconfig").src = "./img/audio-off.svg";
@@ -103,24 +88,27 @@ function muteSounds() {
     }
 }
 
+// atualizar pontuação
 function updateScore(i) {
     score += i;
     clickSound.play();
     qs("#score").innerHTML = score;
     qs("title").innerHTML = score + " sonhos | yumeclick";
 
-    if (score >= costFrog) {
+    if (score >= cost[0]) {
         qs(".efeito-frog").style.display = "";
     }
 }
 
+// atualizar cliques por segundo
 function autoClicker() {
     score += cps;
 }
 
+// usar efeitos
 function useEffect(effect) {
     if (effect === "frog") {
-        if (boughtFrog >= 1) {
+        if (bought[0] >= 1) {
             if (qs("#frog-title").style.color == "rgb(255, 255, 255)") {
                 enableEffect();
             }
@@ -130,7 +118,7 @@ function useEffect(effect) {
         }
     }
     else if (effect === "umbrella") {
-        if (boughtUmbrella >= 1) {
+        if (bought[1] >= 1) {
             if (qs("#umbrella-title").style.color == "rgb(255, 255, 255)") {
                 enableEffect();
             }
@@ -161,7 +149,7 @@ function useEffect(effect) {
     }
 }
 
-/* loops */
+/* loop */
 window.setInterval(function() {
     autoClicker();
     qs("#score").innerHTML = score;
