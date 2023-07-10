@@ -48,7 +48,7 @@ function buyEffect(effect) {
         score -= cost[toBuy];
         cps += 1;
         bought[toBuy] += 1;
-        cost[toBuy] = Math.ceil(cost[0] * 1.25);
+        cost[toBuy] = Math.ceil(cost[toBuy] * 1.25);
         qs(`#${efeitos[toBuy]}-cost`).innerHTML = cost[toBuy];
         qs("#cps").innerHTML = cps;
         qs("#score").innerHTML = score;
